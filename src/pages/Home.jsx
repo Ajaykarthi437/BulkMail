@@ -3,8 +3,8 @@ import MailHistory from "../components/MailHistory";
 
 const Home = () => {
   return (
-    <div className="flex justify-center items-start py-10">
-      <div className="w-full max-w-2xl">
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "flex-start", padding: "2.5rem 0" }}>
+      <div style={{ width: "100%", maxWidth: "32rem" }}>
         <MailForm />
         <MailHistory />
       </div>
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;;
+export default Home;

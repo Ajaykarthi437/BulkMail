@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { sendMail } from "../services/mailService";
 
 const MailForm = () => {
@@ -33,40 +33,79 @@ const MailForm = () => {
     }
   };
 
-  const execCommand = (command, value = null) => {
-    document.execCommand(command, false, value);
-    bodyRef.current.focus();
-  };
 
   return (
     <form
-      className="bg-gradient-to-b from-indigo-50 to-white shadow-2xl rounded-2xl max-w-4xl mx-auto mt-10 p-8 space-y-6 border border-indigo-200"
+      style={{
+        background: "linear-gradient(to bottom, #e0e7ff, white)",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        borderRadius: "1rem",
+        maxWidth: "40rem",
+        margin: "2.5rem auto",
+        padding: "2rem",
+        display: "grid",
+        gap: "1.5rem",
+        border: "1px solid #b3b3cc",
+      }}
       onSubmit={handleSubmit}
     >
       {/* Header */}
-      <h2 className="text-4xl font-extrabold text-indigo-700 mb-6 text-center drop-shadow-sm">
+      <h2
+        style={{
+          fontSize: "2.25rem",
+          fontWeight: "800",
+          color: "#4c51bf",
+          marginBottom: "1.5rem",
+          textAlign: "center",
+          textShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+        }}
+      >
         📧 Compose Email
       </h2>
 
       {/* From & To */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col">
-          <label className="mb-1 text-indigo-600 font-semibold">From:</label>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr",
+          gap: "1rem",
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label style={{ marginBottom: "0.25rem", fontWeight: "600", color: "#4c51bf" }}>
+            From:
+          </label>
           <input
             type="text"
             placeholder="Your Name"
-            className="p-3 border border-indigo-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none hover:shadow-md transition placeholder-gray-400 text-gray-800 font-medium"
+            style={{
+              padding: "0.75rem",
+              border: "1px solid #c3dafd",
+              borderRadius: "0.5rem",
+              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+              fontWeight: "500",
+              transition: "all 0.2s",
+            }}
             value={fromName}
             onChange={(e) => setFromName(e.target.value)}
             required
           />
         </div>
-        <div className="flex flex-col">
-          <label className="mb-1 text-indigo-600 font-semibold">To:</label>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <label style={{ marginBottom: "0.25rem", fontWeight: "600", color: "#4c51bf" }}>
+            To:
+          </label>
           <input
             type="text"
             placeholder="Recipient Emails (comma separated)"
-            className="p-3 border border-indigo-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none hover:shadow-md transition placeholder-gray-400 text-gray-800 font-medium"
+            style={{
+              padding: "0.75rem",
+              border: "1px solid #c3dafd",
+              borderRadius: "0.5rem",
+              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+              fontWeight: "500",
+              transition: "all 0.2s",
+            }}
             value={recipients}
             onChange={(e) => setRecipients(e.target.value)}
             required
@@ -75,12 +114,21 @@ const MailForm = () => {
       </div>
 
       {/* Subject */}
-      <div className="flex flex-col">
-        <label className="mb-1 text-indigo-600 font-semibold">Subject:</label>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <label style={{ marginBottom: "0.25rem", fontWeight: "600", color: "#4c51bf" }}>
+          Subject:
+        </label>
         <input
           type="text"
           placeholder="Subject"
-          className="p-3 border border-indigo-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none hover:shadow-md transition placeholder-gray-400 text-gray-800 font-medium"
+          style={{
+            padding: "0.75rem",
+            border: "1px solid #c3dafd",
+            borderRadius: "0.5rem",
+            boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+            fontWeight: "500",
+            transition: "all 0.2s",
+          }}
           value={subject}
           onChange={(e) => setSubject(e.target.value)}
           required
@@ -88,25 +136,58 @@ const MailForm = () => {
       </div>
 
       {/* Toolbar */}
-      <div className="flex space-x-2 bg-indigo-100 p-2 rounded-lg border border-indigo-200">
+      <div
+        style={{
+          display: "flex",
+          gap: "0.5rem",
+          backgroundColor: "#f3f4f6",
+          padding: "0.5rem",
+          borderRadius: "0.5rem",
+          border: "1px solid #b3b3cc",
+        }}
+      >
         <button
           type="button"
           onClick={() => execCommand("bold")}
-          className="hover:bg-indigo-200 p-2 rounded font-bold text-indigo-700 transition"
+          style={{
+            padding: "0.5rem",
+            borderRadius: "0.25rem",
+            fontWeight: "bold",
+            color: "#4c51bf",
+            backgroundColor: "transparent",
+            cursor: "pointer",
+            transition: "background 0.2s",
+          }}
         >
           B
         </button>
         <button
           type="button"
           onClick={() => execCommand("italic")}
-          className="hover:bg-indigo-200 p-2 rounded italic text-indigo-700 transition"
+          style={{
+            padding: "0.5rem",
+            borderRadius: "0.25rem",
+            fontStyle: "italic",
+            color: "#4c51bf",
+            backgroundColor: "transparent",
+            cursor: "pointer",
+            transition: "background 0.2s",
+          }}
         >
           I
         </button>
         <button
           type="button"
           onClick={() => execCommand("underline")}
-          className="hover:bg-indigo-200 p-2 rounded underline text-indigo-700 transition"
+          style={{
+            padding: "0.5rem",
+            borderRadius: "0.25rem",
+            textDecoration: "underline",
+            color: "#4c51bf",
+            backgroundColor: "transparent",
+            cursor: "pointer",
+            transition: "background 0.2s",
+          }}
         >
           U
         </button>
@@ -116,7 +197,14 @@ const MailForm = () => {
             const url = prompt("Enter link URL:");
             if (url) execCommand("createLink", url);
           }}
-          className="hover:bg-indigo-200 p-2 rounded text-indigo-700 transition"
+          style={{
+            padding: "0.5rem",
+            borderRadius: "0.25rem",
+            color: "#4c51bf",
+            backgroundColor: "transparent",
+            cursor: "pointer",
+            transition: "background 0.2s",
+          }}
         >
           🔗
         </button>
@@ -126,7 +214,14 @@ const MailForm = () => {
             const url = prompt("Enter image URL:");
             if (url) execCommand("insertImage", url);
           }}
-          className="hover:bg-indigo-200 p-2 rounded text-indigo-700 transition"
+          style={{
+            padding: "0.5rem",
+            borderRadius: "0.25rem",
+            color: "#4c51bf",
+            backgroundColor: "transparent",
+            cursor: "pointer",
+            transition: "background 0.2s",
+          }}
         >
           🖼️
         </button>
@@ -136,15 +231,26 @@ const MailForm = () => {
       <div
         ref={bodyRef}
         contentEditable
-        className="w-full min-h-[300px] p-4 border border-indigo-300 rounded-lg shadow-sm focus:ring-2 focus:ring-purple-400 focus:outline-none hover:shadow-md resize-none transition overflow-auto text-gray-900 font-sans"
+        style={{
+          width: "100%",
+          minHeight: "300px",
+          padding: "1rem",
+          border: "1px solid #c3dafd",
+          borderRadius: "0.5rem",
+          boxShadow: "0 1px 3px rgba(0, 0, 0, 0.1)",
+          fontFamily: "sans-serif",
+          color: "#333",
+          overflow: "auto",
+          resize: "none",
+          transition: "all 0.2s",
+        }}
         placeholder="Write your email here..."
       />
 
       {/* Buttons */}
-      <div className="flex justify-end space-x-3">
+      <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
         <button
           type="button"
-          className="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition shadow font-medium"
           onClick={() => {
             setFromName("");
             setRecipients("");
@@ -152,12 +258,27 @@ const MailForm = () => {
             setMessage("");
             bodyRef.current.innerHTML = "";
           }}
+          style={{
+            backgroundColor: "#e2e8f0",
+            color: "#4c51bf",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "0.5rem",
+            cursor: "pointer",
+            transition: "background 0.2s",
+          }}
         >
           Clear
         </button>
         <button
           type="submit"
-          className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-lg hover:from-indigo-600 hover:to-purple-600 transition shadow-lg font-medium"
+          style={{
+            background: "linear-gradient(to right, #667eea, #764ba2)",
+            color: "white",
+            padding: "0.75rem 1.5rem",
+            borderRadius: "0.5rem",
+            cursor: "pointer",
+            transition: "background 0.2s",
+          }}
         >
           Send
         </button>
@@ -166,9 +287,12 @@ const MailForm = () => {
       {/* Status message */}
       {message && (
         <p
-          className={`text-center mt-3 font-semibold ${
-            messageType === "success" ? "text-green-600" : "text-red-600"
-          }`}
+          style={{
+            textAlign: "center",
+            marginTop: "1rem",
+            fontWeight: "600",
+            color: messageType === "success" ? "#48bb78" : "#e53e3e",
+          }}
         >
           {message}
         </p>

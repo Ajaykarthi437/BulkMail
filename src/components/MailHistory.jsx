@@ -21,34 +21,77 @@ const MailHistory = () => {
   }, []);
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg mt-6 max-w-xl mx-auto">
-      <h3 className="text-xl font-semibold mb-4 text-indigo-600">
+    <div
+      style={{
+        backgroundColor: "white",
+        padding: "1.5rem",
+        borderRadius: "1rem",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        marginTop: "1.5rem",
+        maxWidth: "32rem",
+        margin: "auto",
+      }}
+    >
+      <h3
+        style={{
+          fontSize: "1.25rem",
+          fontWeight: "600",
+          marginBottom: "1rem",
+          color: "#4c51bf",
+        }}
+      >
         📜 Email History
       </h3>
 
-      {loading && <p className="text-center text-gray-500">Loading history...</p>}
+      {loading && <p style={{ textAlign: "center", color: "#a0aec0" }}>Loading history...</p>}
 
       {!loading && history.length === 0 && (
-        <p className="text-center text-gray-500">No emails sent yet</p>
+        <p style={{ textAlign: "center", color: "#a0aec0" }}>No emails sent yet</p>
       )}
 
       {!loading && history.length > 0 && (
-        <div className="space-y-3 max-h-64 overflow-y-auto">
+        <div style={{ maxHeight: "16rem", overflowY: "auto", gap: "1rem" }}>
           {history.map((mail) => (
-            <div key={mail._id} className="border p-4 rounded-lg">
-              <p className="font-semibold text-indigo-700">Subject: {mail.subject}</p>
-              <p className="text-sm text-gray-600">From: {mail.fromName} &lt;{mail.fromEmail}&gt;</p>
-              <p className="text-sm text-gray-600">To: {mail.recipients.join(", ")}</p>
-              <div className="flex justify-between items-center mt-2">
-                <span className="text-xs text-gray-400">
+            <div
+              key={mail._id}
+              style={{
+                border: "1px solid #c3dafd",
+                padding: "1rem",
+                borderRadius: "0.5rem",
+              }}
+            >
+              <p style={{ fontWeight: "600", color: "#4c51bf" }}>Subject: {mail.subject}</p>
+              <p style={{ fontSize: "0.875rem", color: "#4a5568" }}>
+                From: {mail.fromName} &lt;{mail.fromEmail}&gt;
+              </p>
+              <p style={{ fontSize: "0.875rem", color: "#4a5568" }}>
+                To: {mail.recipients.join(", ")}
+              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginTop: "0.5rem",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "#a0aec0",
+                  }}
+                >
                   {new Date(mail.createdAt).toLocaleString()}
                 </span>
                 <span
-                  className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    mail.status === "SUCCESS"
-                      ? "bg-green-100 text-green-700"
-                      : "bg-red-100 text-red-700"
-                  }`}
+                  style={{
+                    padding: "0.25rem 0.75rem",
+                    borderRadius: "9999px",
+                    fontSize: "0.75rem",
+                    fontWeight: "500",
+                    color: mail.status === "SUCCESS" ? "#38a169" : "#e53e3e",
+                    backgroundColor: mail.status === "SUCCESS" ? "#f0fff4" : "#fff5f5",
+                  }}
                 >
                   {mail.status}
                 </span>
